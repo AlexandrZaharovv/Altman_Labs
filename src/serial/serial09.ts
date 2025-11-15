@@ -1,0 +1,20 @@
+/* 
+	Исправьте структуру "дерево" с рекурсивными ссылками для корректной десериализации
+*/
+
+import { Type } from "class-transformer";
+import "reflect-metadata";
+
+export class TreeNode {
+  value: string;
+  
+  @Type(() => TreeNode)
+  children: TreeNode[];
+
+  constructor(value: string) {
+	this.value = value;
+	this.children = [];
+  }
+  
+  getChildCount() { return this.children.length; }
+}
